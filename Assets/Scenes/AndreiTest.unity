@@ -472,9 +472,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  playerHeight: 5
+  playerHeight: 2
   groundDrag: 2
-  airMultiplier: 0
+  jumpForce: 12
+  jumpCooldown: 0.25
+  airMultiplier: 0.4
 --- !u!1 &1129755184
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +489,7 @@ GameObject:
   - component: {fileID: 1129755187}
   - component: {fileID: 1129755186}
   - component: {fileID: 1129755185}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

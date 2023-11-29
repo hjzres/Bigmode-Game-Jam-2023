@@ -12,66 +12,92 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float playerHeight;
     bool grounded;
     public float groundDrag;
+    public float jumpForce;
+    public float jumpCooldown;
     public float airMultiplier;
+    bool readyToJump;
 
     
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+
+        readyToJump = true;
     }
 
-
-    void Update()
+    private void Update()
     {
+        // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, LayerMask.GetMask("Ground"));
 
-        PlayerInput();
+        MyInput();
         SpeedControl();
 
+        // handle drag
         if (grounded)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
     }
 
-    /// <summary>
-    /// Gets the player's input and applies it to the moveDirection vector.
-    /// </summary>
-    private void PlayerInput()
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
+    private void MyInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        print(grounded);
+        // when to jump
+        if(Input.GetKey(KeyCode.Space) && readyToJump && grounded)
+        {
+            readyToJump = false;
 
-        if(grounded)
-        rb.drag = groundDrag;
-        else
-        rb.drag = 0;
+            Jump();
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
     }
 
-    private void FixedUpdate() 
+    private void MovePlayer()
     {
+        // calculate movement direction
         moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
 
+
+        // on ground
         if(grounded)
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10, ForceMode.Force);
-        else
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        // in air
+        else if(!grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 
-    /// <summary>
-    /// Limits the player's speed to the moveSpeed variable.
-    /// </summary>
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
+        // limit velocity if needed
         if(flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
+    }
+
+    private void Jump()
+    {
+        // reset y velocity
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+    private void ResetJump()
+    {
+        readyToJump = true;
     }
 }
