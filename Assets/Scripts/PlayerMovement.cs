@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Header("Movement")]
+    public float moveSpeed;
+    float horizontalInput, verticalInput;
+    Vector3 moveDirection;
+    Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+
+        moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+        Debug.Log(verticalInput);
+
+        rb.AddForce(moveDirection.normalized * moveSpeed * 100 * Time.deltaTime, ForceMode.Force);
     }
 }
