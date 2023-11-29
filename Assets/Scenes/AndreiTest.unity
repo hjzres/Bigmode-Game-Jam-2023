@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 736516684}
   - component: {fileID: 736516683}
   - component: {fileID: 736516682}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,8 +316,8 @@ Transform:
   m_GameObject: {fileID: 736516681}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.098, y: -1.3147, z: -5.7509}
-  m_LocalScale: {x: 29.420544, y: 0.4883, z: 31.22242}
+  m_LocalPosition: {x: 21.0921, y: -1.3147, z: 7.1734}
+  m_LocalScale: {x: 43.41001, y: 0.4883, z: 57.071465}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -471,7 +471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762124734744c8c45add14d53a077bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 7
+  playerHeight: 5
+  groundDrag: 2
+  airMultiplier: 0
 --- !u!1 &1129755184
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,8 +574,8 @@ Transform:
   m_GameObject: {fileID: 1129755184}
   serializedVersion: 2
   m_LocalRotation: {x: 0.24161263, y: -0, z: -0, w: 0.9703728}
-  m_LocalPosition: {x: 12.0083, y: 0.3431, z: -11.27}
-  m_LocalScale: {x: 8.1448, y: 0.034, z: 7.7562}
+  m_LocalPosition: {x: 16.4, y: 2, z: -13.9}
+  m_LocalScale: {x: 18.10915, y: 0.034, z: 21.664618}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -682,7 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d4eb2910aff804398d3a6497f753ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 500
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
