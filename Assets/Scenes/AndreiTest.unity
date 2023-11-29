@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 1124806462}
   - component: {fileID: 1124806461}
   - component: {fileID: 1124806460}
+  - component: {fileID: 1124806465}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -367,7 +368,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &1124806461
 CapsuleCollider:
@@ -458,6 +459,19 @@ Transform:
   - {fileID: 1713025396}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1124806465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124806459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762124734744c8c45add14d53a077bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
 --- !u!1 &1129755184
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +588,7 @@ GameObject:
   - component: {fileID: 1713025396}
   - component: {fileID: 1713025395}
   - component: {fileID: 1713025394}
+  - component: {fileID: 1713025397}
   m_Layer: 0
   m_Name: Cam
   m_TagString: MainCamera
@@ -655,6 +670,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1124806464}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713025397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713025393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d4eb2910aff804398d3a6497f753ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

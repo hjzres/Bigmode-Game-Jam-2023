@@ -13,9 +13,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
 
@@ -24,9 +21,25 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
         Debug.Log(verticalInput);
 
-        rb.AddForce(moveDirection.normalized * moveSpeed * 100 * Time.deltaTime, ForceMode.Force);
+        rb.AddForce(moveDirection.normalized * moveSpeed * 10, ForceMode.Force);
+        SpeedControl();
+    }
+
+    private void FixedUpdate() {
+        moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        // limit velocity if needed
+        if(flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
     }
 }
