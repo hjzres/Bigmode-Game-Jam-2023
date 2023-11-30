@@ -11,4 +11,7 @@ public class StaticData : MonoBehaviour
     // Scenes
     public static int mainMenuScene = 0;
     public static int levelsScene = 1;
+
+    // Modes
+    public static int mode = 0;
 }
